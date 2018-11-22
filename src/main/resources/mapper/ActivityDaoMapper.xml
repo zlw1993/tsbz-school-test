@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.imooc.schoolproject.dao.ActivityDaoMapper">
+    <select id="queryActivities" resultType="com.imooc.schoolproject.entity.SocialActivity">
+        select edu_id, student_name, school_year, school_season, k_id, od_id, hdlx, course_type, course_name,
+        course_introduction, start_time, end_time, cxsj, address, institution, teacher_id, teacher_name, score,
+        is_task, is_evaluate, havest, sftthd, class_id, sync_state, create_time, update_time, sfbxhd, address_lng,
+        address_lat, subschool
+        from student_social_activity
+    </select>
+
+    <select id="queryStudentById" resultType="com.imooc.schoolproject.entity.StudenEntity">
+        SELECT xxdm, njid, xjh, xh, xm, xmpy, cym, xbm, csrq, mzm, gjdqm, sfzjlxm, sflx, sfzjh,
+        nj, bh, lxdh, txdz, yzbm, dzxx, zxzt, jfsj, signcode, zp, bjid, xjszd, xsly, csdbm, hkszd,
+        jwbs, gjxjh, jdfs, xd, photo, suiban, zzmm
+        FROM student
+        WHERE xjh = #{xjh}
+    </select>
+</mapper>

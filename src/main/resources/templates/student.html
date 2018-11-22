@@ -1,0 +1,51 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"-->
+      <!--xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>学生 信息</h1>-->
+
+<!--<table>-->
+    <!--<tr>-->
+        <!--<th>姓名</th>-->
+        <!--<th>学号</th>-->
+        <!--<th>性别</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td >Onions</td>-->
+        <!--<td >2.41</td>-->
+        <!--<td >yes</td>-->
+    <!--</tr>-->
+<!--</table>-->
+
+<!--<p>-->
+    <!--<img src="../image/name.jpg">-->
+<!--</p>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>学号</th>
+        <th>性别</th>
+    </tr>
+    <tr>
+        <td th:text="${dataName.xm}">13</td>
+        <td th:text="${dataName.xh}">1</td>
+        <td th:text="${dataName.csrq}">1</td>
+    </tr>
+</table>
+
+<img src="../image/name.jpg">
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>edu_id</th>
+        <th>school_year</th>
+        <th>course_name</th>
+    </tr>
+    <tr th:each="activitiData : ${activitiDatas}">
+        <td th:text="${activitiData.eduId}">13</td>
+        <td th:text="${activitiData.schoolYear}">1</td>
+        <td th:text="${activitiData.courseName}">1</td>
+    </tr>
+</table>
+
+<img src="../image/name.jpg">
+</body>
+</html>

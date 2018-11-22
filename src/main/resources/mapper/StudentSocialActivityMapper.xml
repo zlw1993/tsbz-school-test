@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.schoolproject.dao.StudentSocialActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.imooc.schoolproject.bo.StudentSocialActivity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="edu_id" property="eduId" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="school_year" property="schoolYear" jdbcType="VARCHAR" />
+    <result column="school_season" property="schoolSeason" jdbcType="VARCHAR" />
+    <result column="k_id" property="kId" jdbcType="INTEGER" />
+    <result column="od_id" property="odId" jdbcType="VARCHAR" />
+    <result column="hdlx" property="hdlx" jdbcType="INTEGER" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_introduction" property="courseIntroduction" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="cxsj" property="cxsj" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="attence" property="attence" jdbcType="VARCHAR" />
+    <result column="institution" property="institution" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="is_task" property="isTask" jdbcType="INTEGER" />
+    <result column="is_evaluate" property="isEvaluate" jdbcType="INTEGER" />
+    <result column="havest" property="havest" jdbcType="VARCHAR" />
+    <result column="Sftthd" property="sftthd" jdbcType="CHAR" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="sync_state" property="syncState" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="sfbxhd" property="sfbxhd" jdbcType="CHAR" />
+    <result column="address_lng" property="addressLng" jdbcType="DOUBLE" />
+    <result column="address_lat" property="addressLat" jdbcType="DOUBLE" />
+    <result column="subschool" property="subschool" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, edu_id, student_name, school_year, school_season, k_id, od_id, hdlx, course_type, 
+    course_name, course_introduction, start_time, end_time, cxsj, address, attence, institution, 
+    teacher_id, teacher_name, score, is_task, is_evaluate, havest, Sftthd, class_id, 
+    sync_state, create_time, update_time, sfbxhd, address_lng, address_lat, subschool
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imooc.schoolproject.bo.StudentSocialActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from student_social_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_social_activity
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student_social_activity
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imooc.schoolproject.bo.StudentSocialActivityExample" >
+    delete from student_social_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imooc.schoolproject.bo.StudentSocialActivity" >
+    insert into student_social_activity (id, edu_id, student_name, 
+      school_year, school_season, k_id, 
+      od_id, hdlx, course_type, 
+      course_name, course_introduction, start_time, 
+      end_time, cxsj, address, 
+      attence, institution, teacher_id, 
+      teacher_name, score, is_task, 
+      is_evaluate, havest, Sftthd, 
+      class_id, sync_state, create_time, 
+      update_time, sfbxhd, address_lng, 
+      address_lat, subschool)
+    values (#{id,jdbcType=VARCHAR}, #{eduId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, 
+      #{schoolYear,jdbcType=VARCHAR}, #{schoolSeason,jdbcType=VARCHAR}, #{kId,jdbcType=INTEGER}, 
+      #{odId,jdbcType=VARCHAR}, #{hdlx,jdbcType=INTEGER}, #{courseType,jdbcType=INTEGER}, 
+      #{courseName,jdbcType=VARCHAR}, #{courseIntroduction,jdbcType=VARCHAR}, #{startTime,jdbcType=INTEGER}, 
+      #{endTime,jdbcType=INTEGER}, #{cxsj,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{attence,jdbcType=VARCHAR}, #{institution,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{teacherName,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{isTask,jdbcType=INTEGER}, 
+      #{isEvaluate,jdbcType=INTEGER}, #{havest,jdbcType=VARCHAR}, #{sftthd,jdbcType=CHAR}, 
+      #{classId,jdbcType=VARCHAR}, #{syncState,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{sfbxhd,jdbcType=CHAR}, #{addressLng,jdbcType=DOUBLE}, 
+      #{addressLat,jdbcType=DOUBLE}, #{subschool,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imooc.schoolproject.bo.StudentSocialActivity" >
+    insert into student_social_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eduId != null" >
+        edu_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="schoolYear != null" >
+        school_year,
+      </if>
+      <if test="schoolSeason != null" >
+        school_season,
+      </if>
+      <if test="kId != null" >
+        k_id,
+      </if>
+      <if test="odId != null" >
+        od_id,
+      </if>
+      <if test="hdlx != null" >
+        hdlx,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseIntroduction != null" >
+        course_introduction,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="cxsj != null" >
+        cxsj,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="attence != null" >
+        attence,
+      </if>
+      <if test="institution != null" >
+        institution,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="teacherName != null" >
+        teacher_name,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="isTask != null" >
+        is_task,
+      </if>
+      <if test="isEvaluate != null" >
+        is_evaluate,
+      </if>
+      <if test="havest != null" >
+        havest,
+      </if>
+      <if test="sftthd != null" >
+        Sftthd,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="syncState != null" >
+        sync_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="sfbxhd != null" >
+        sfbxhd,
+      </if>
+      <if test="addressLng != null" >
+        address_lng,
+      </if>
+      <if test="addressLat != null" >
+        address_lat,
+      </if>
+      <if test="subschool != null" >
+        subschool,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eduId != null" >
+        #{eduId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolYear != null" >
+        #{schoolYear,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSeason != null" >
+        #{schoolSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="kId != null" >
+        #{kId,jdbcType=INTEGER},
+      </if>
+      <if test="odId != null" >
+        #{odId,jdbcType=VARCHAR},
+      </if>
+      <if test="hdlx != null" >
+        #{hdlx,jdbcType=INTEGER},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null" >
+        #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="cxsj != null" >
+        #{cxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="attence != null" >
+        #{attence,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null" >
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isTask != null" >
+        #{isTask,jdbcType=INTEGER},
+      </if>
+      <if test="isEvaluate != null" >
+        #{isEvaluate,jdbcType=INTEGER},
+      </if>
+      <if test="havest != null" >
+        #{havest,jdbcType=VARCHAR},
+      </if>
+      <if test="sftthd != null" >
+        #{sftthd,jdbcType=CHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="syncState != null" >
+        #{syncState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfbxhd != null" >
+        #{sfbxhd,jdbcType=CHAR},
+      </if>
+      <if test="addressLng != null" >
+        #{addressLng,jdbcType=DOUBLE},
+      </if>
+      <if test="addressLat != null" >
+        #{addressLat,jdbcType=DOUBLE},
+      </if>
+      <if test="subschool != null" >
+        #{subschool,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imooc.schoolproject.bo.StudentSocialActivityExample" resultType="java.lang.Integer" >
+    select count(*) from student_social_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student_social_activity
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduId != null" >
+        edu_id = #{record.eduId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentName != null" >
+        student_name = #{record.studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolYear != null" >
+        school_year = #{record.schoolYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolSeason != null" >
+        school_season = #{record.schoolSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kId != null" >
+        k_id = #{record.kId,jdbcType=INTEGER},
+      </if>
+      <if test="record.odId != null" >
+        od_id = #{record.odId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hdlx != null" >
+        hdlx = #{record.hdlx,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseIntroduction != null" >
+        course_introduction = #{record.courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.cxsj != null" >
+        cxsj = #{record.cxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attence != null" >
+        attence = #{record.attence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institution != null" >
+        institution = #{record.institution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherId != null" >
+        teacher_id = #{record.teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherName != null" >
+        teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTask != null" >
+        is_task = #{record.isTask,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEvaluate != null" >
+        is_evaluate = #{record.isEvaluate,jdbcType=INTEGER},
+      </if>
+      <if test="record.havest != null" >
+        havest = #{record.havest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sftthd != null" >
+        Sftthd = #{record.sftthd,jdbcType=CHAR},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syncState != null" >
+        sync_state = #{record.syncState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sfbxhd != null" >
+        sfbxhd = #{record.sfbxhd,jdbcType=CHAR},
+      </if>
+      <if test="record.addressLng != null" >
+        address_lng = #{record.addressLng,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addressLat != null" >
+        address_lat = #{record.addressLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.subschool != null" >
+        subschool = #{record.subschool,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student_social_activity
+    set id = #{record.id,jdbcType=VARCHAR},
+      edu_id = #{record.eduId,jdbcType=VARCHAR},
+      student_name = #{record.studentName,jdbcType=VARCHAR},
+      school_year = #{record.schoolYear,jdbcType=VARCHAR},
+      school_season = #{record.schoolSeason,jdbcType=VARCHAR},
+      k_id = #{record.kId,jdbcType=INTEGER},
+      od_id = #{record.odId,jdbcType=VARCHAR},
+      hdlx = #{record.hdlx,jdbcType=INTEGER},
+      course_type = #{record.courseType,jdbcType=INTEGER},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_introduction = #{record.courseIntroduction,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      cxsj = #{record.cxsj,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      attence = #{record.attence,jdbcType=VARCHAR},
+      institution = #{record.institution,jdbcType=VARCHAR},
+      teacher_id = #{record.teacherId,jdbcType=VARCHAR},
+      teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      is_task = #{record.isTask,jdbcType=INTEGER},
+      is_evaluate = #{record.isEvaluate,jdbcType=INTEGER},
+      havest = #{record.havest,jdbcType=VARCHAR},
+      Sftthd = #{record.sftthd,jdbcType=CHAR},
+      class_id = #{record.classId,jdbcType=VARCHAR},
+      sync_state = #{record.syncState,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      sfbxhd = #{record.sfbxhd,jdbcType=CHAR},
+      address_lng = #{record.addressLng,jdbcType=DOUBLE},
+      address_lat = #{record.addressLat,jdbcType=DOUBLE},
+      subschool = #{record.subschool,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imooc.schoolproject.bo.StudentSocialActivity" >
+    update student_social_activity
+    <set >
+      <if test="eduId != null" >
+        edu_id = #{eduId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolYear != null" >
+        school_year = #{schoolYear,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSeason != null" >
+        school_season = #{schoolSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="kId != null" >
+        k_id = #{kId,jdbcType=INTEGER},
+      </if>
+      <if test="odId != null" >
+        od_id = #{odId,jdbcType=VARCHAR},
+      </if>
+      <if test="hdlx != null" >
+        hdlx = #{hdlx,jdbcType=INTEGER},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null" >
+        course_introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="cxsj != null" >
+        cxsj = #{cxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="attence != null" >
+        attence = #{attence,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null" >
+        institution = #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isTask != null" >
+        is_task = #{isTask,jdbcType=INTEGER},
+      </if>
+      <if test="isEvaluate != null" >
+        is_evaluate = #{isEvaluate,jdbcType=INTEGER},
+      </if>
+      <if test="havest != null" >
+        havest = #{havest,jdbcType=VARCHAR},
+      </if>
+      <if test="sftthd != null" >
+        Sftthd = #{sftthd,jdbcType=CHAR},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="syncState != null" >
+        sync_state = #{syncState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfbxhd != null" >
+        sfbxhd = #{sfbxhd,jdbcType=CHAR},
+      </if>
+      <if test="addressLng != null" >
+        address_lng = #{addressLng,jdbcType=DOUBLE},
+      </if>
+      <if test="addressLat != null" >
+        address_lat = #{addressLat,jdbcType=DOUBLE},
+      </if>
+      <if test="subschool != null" >
+        subschool = #{subschool,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imooc.schoolproject.bo.StudentSocialActivity" >
+    update student_social_activity
+    set edu_id = #{eduId,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      school_year = #{schoolYear,jdbcType=VARCHAR},
+      school_season = #{schoolSeason,jdbcType=VARCHAR},
+      k_id = #{kId,jdbcType=INTEGER},
+      od_id = #{odId,jdbcType=VARCHAR},
+      hdlx = #{hdlx,jdbcType=INTEGER},
+      course_type = #{courseType,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      cxsj = #{cxsj,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      attence = #{attence,jdbcType=VARCHAR},
+      institution = #{institution,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      is_task = #{isTask,jdbcType=INTEGER},
+      is_evaluate = #{isEvaluate,jdbcType=INTEGER},
+      havest = #{havest,jdbcType=VARCHAR},
+      Sftthd = #{sftthd,jdbcType=CHAR},
+      class_id = #{classId,jdbcType=VARCHAR},
+      sync_state = #{syncState,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      sfbxhd = #{sfbxhd,jdbcType=CHAR},
+      address_lng = #{addressLng,jdbcType=DOUBLE},
+      address_lat = #{addressLat,jdbcType=DOUBLE},
+      subschool = #{subschool,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

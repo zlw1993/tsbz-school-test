@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.schoolproject.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.imooc.schoolproject.bo.Student" >
+    <id column="XJH" property="xjh" jdbcType="VARCHAR" />
+    <result column="XXDM" property="xxdm" jdbcType="VARCHAR" />
+    <result column="NJID" property="njid" jdbcType="VARCHAR" />
+    <result column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="XMPY" property="xmpy" jdbcType="VARCHAR" />
+    <result column="CYM" property="cym" jdbcType="VARCHAR" />
+    <result column="XBM" property="xbm" jdbcType="VARCHAR" />
+    <result column="CSRQ" property="csrq" jdbcType="DATE" />
+    <result column="MZM" property="mzm" jdbcType="VARCHAR" />
+    <result column="GJDQM" property="gjdqm" jdbcType="VARCHAR" />
+    <result column="SFZJLXM" property="sfzjlxm" jdbcType="VARCHAR" />
+    <result column="SFLX" property="sflx" jdbcType="VARCHAR" />
+    <result column="SFZJH" property="sfzjh" jdbcType="VARCHAR" />
+    <result column="NJ" property="nj" jdbcType="VARCHAR" />
+    <result column="BH" property="bh" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+    <result column="TXDZ" property="txdz" jdbcType="VARCHAR" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="DZXX" property="dzxx" jdbcType="VARCHAR" />
+    <result column="ZXZT" property="zxzt" jdbcType="VARCHAR" />
+    <result column="CZLX" property="czlx" jdbcType="VARCHAR" />
+    <result column="JFSJ" property="jfsj" jdbcType="DATE" />
+    <result column="SIGNCODE" property="signcode" jdbcType="VARCHAR" />
+    <result column="BJID" property="bjid" jdbcType="VARCHAR" />
+    <result column="XJSZD" property="xjszd" jdbcType="VARCHAR" />
+    <result column="XSLY" property="xsly" jdbcType="VARCHAR" />
+    <result column="CSDBM" property="csdbm" jdbcType="VARCHAR" />
+    <result column="HKSZD" property="hkszd" jdbcType="VARCHAR" />
+    <result column="JWBS" property="jwbs" jdbcType="VARCHAR" />
+    <result column="GJXJH" property="gjxjh" jdbcType="VARCHAR" />
+    <result column="JDFS" property="jdfs" jdbcType="VARCHAR" />
+    <result column="XD" property="xd" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="SUIBAN" property="suiban" jdbcType="VARCHAR" />
+    <result column="ZZMM" property="zzmm" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.imooc.schoolproject.bo.Student" extends="BaseResultMap" >
+    <result column="ZP" property="zp" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XJH, XXDM, NJID, XH, XM, XMPY, CYM, XBM, CSRQ, MZM, GJDQM, SFZJLXM, SFLX, SFZJH, 
+    NJ, BH, LXDH, TXDZ, YZBM, DZXX, ZXZT, CZLX, JFSJ, SIGNCODE, BJID, XJSZD, XSLY, CSDBM, 
+    HKSZD, JWBS, GJXJH, JDFS, XD, PHOTO, SUIBAN, ZZMM
+  </sql>
+  <sql id="Blob_Column_List" >
+    ZP
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.imooc.schoolproject.bo.StudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imooc.schoolproject.bo.StudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from student
+    where XJH = #{xjh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where XJH = #{xjh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imooc.schoolproject.bo.StudentExample" >
+    delete from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imooc.schoolproject.bo.Student" >
+    insert into student (XJH, XXDM, NJID, 
+      XH, XM, XMPY, CYM, 
+      XBM, CSRQ, MZM, GJDQM, 
+      SFZJLXM, SFLX, SFZJH, 
+      NJ, BH, LXDH, TXDZ, 
+      YZBM, DZXX, ZXZT, CZLX, 
+      JFSJ, SIGNCODE, BJID, 
+      XJSZD, XSLY, CSDBM, 
+      HKSZD, JWBS, GJXJH, 
+      JDFS, XD, PHOTO, SUIBAN, 
+      ZZMM, ZP)
+    values (#{xjh,jdbcType=VARCHAR}, #{xxdm,jdbcType=VARCHAR}, #{njid,jdbcType=VARCHAR}, 
+      #{xh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xmpy,jdbcType=VARCHAR}, #{cym,jdbcType=VARCHAR}, 
+      #{xbm,jdbcType=VARCHAR}, #{csrq,jdbcType=DATE}, #{mzm,jdbcType=VARCHAR}, #{gjdqm,jdbcType=VARCHAR}, 
+      #{sfzjlxm,jdbcType=VARCHAR}, #{sflx,jdbcType=VARCHAR}, #{sfzjh,jdbcType=VARCHAR}, 
+      #{nj,jdbcType=VARCHAR}, #{bh,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{txdz,jdbcType=VARCHAR}, 
+      #{yzbm,jdbcType=VARCHAR}, #{dzxx,jdbcType=VARCHAR}, #{zxzt,jdbcType=VARCHAR}, #{czlx,jdbcType=VARCHAR}, 
+      #{jfsj,jdbcType=DATE}, #{signcode,jdbcType=VARCHAR}, #{bjid,jdbcType=VARCHAR}, 
+      #{xjszd,jdbcType=VARCHAR}, #{xsly,jdbcType=VARCHAR}, #{csdbm,jdbcType=VARCHAR}, 
+      #{hkszd,jdbcType=VARCHAR}, #{jwbs,jdbcType=VARCHAR}, #{gjxjh,jdbcType=VARCHAR}, 
+      #{jdfs,jdbcType=VARCHAR}, #{xd,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{suiban,jdbcType=VARCHAR}, 
+      #{zzmm,jdbcType=VARCHAR}, #{zp,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imooc.schoolproject.bo.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xjh != null" >
+        XJH,
+      </if>
+      <if test="xxdm != null" >
+        XXDM,
+      </if>
+      <if test="njid != null" >
+        NJID,
+      </if>
+      <if test="xh != null" >
+        XH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="xmpy != null" >
+        XMPY,
+      </if>
+      <if test="cym != null" >
+        CYM,
+      </if>
+      <if test="xbm != null" >
+        XBM,
+      </if>
+      <if test="csrq != null" >
+        CSRQ,
+      </if>
+      <if test="mzm != null" >
+        MZM,
+      </if>
+      <if test="gjdqm != null" >
+        GJDQM,
+      </if>
+      <if test="sfzjlxm != null" >
+        SFZJLXM,
+      </if>
+      <if test="sflx != null" >
+        SFLX,
+      </if>
+      <if test="sfzjh != null" >
+        SFZJH,
+      </if>
+      <if test="nj != null" >
+        NJ,
+      </if>
+      <if test="bh != null" >
+        BH,
+      </if>
+      <if test="lxdh != null" >
+        LXDH,
+      </if>
+      <if test="txdz != null" >
+        TXDZ,
+      </if>
+      <if test="yzbm != null" >
+        YZBM,
+      </if>
+      <if test="dzxx != null" >
+        DZXX,
+      </if>
+      <if test="zxzt != null" >
+        ZXZT,
+      </if>
+      <if test="czlx != null" >
+        CZLX,
+      </if>
+      <if test="jfsj != null" >
+        JFSJ,
+      </if>
+      <if test="signcode != null" >
+        SIGNCODE,
+      </if>
+      <if test="bjid != null" >
+        BJID,
+      </if>
+      <if test="xjszd != null" >
+        XJSZD,
+      </if>
+      <if test="xsly != null" >
+        XSLY,
+      </if>
+      <if test="csdbm != null" >
+        CSDBM,
+      </if>
+      <if test="hkszd != null" >
+        HKSZD,
+      </if>
+      <if test="jwbs != null" >
+        JWBS,
+      </if>
+      <if test="gjxjh != null" >
+        GJXJH,
+      </if>
+      <if test="jdfs != null" >
+        JDFS,
+      </if>
+      <if test="xd != null" >
+        XD,
+      </if>
+      <if test="photo != null" >
+        PHOTO,
+      </if>
+      <if test="suiban != null" >
+        SUIBAN,
+      </if>
+      <if test="zzmm != null" >
+        ZZMM,
+      </if>
+      <if test="zp != null" >
+        ZP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xjh != null" >
+        #{xjh,jdbcType=VARCHAR},
+      </if>
+      <if test="xxdm != null" >
+        #{xxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="njid != null" >
+        #{njid,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null" >
+        #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null" >
+        #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xbm != null" >
+        #{xbm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null" >
+        #{csrq,jdbcType=DATE},
+      </if>
+      <if test="mzm != null" >
+        #{mzm,jdbcType=VARCHAR},
+      </if>
+      <if test="gjdqm != null" >
+        #{gjdqm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlxm != null" >
+        #{sfzjlxm,jdbcType=VARCHAR},
+      </if>
+      <if test="sflx != null" >
+        #{sflx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null" >
+        #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="nj != null" >
+        #{nj,jdbcType=VARCHAR},
+      </if>
+      <if test="bh != null" >
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null" >
+        #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null" >
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzxx != null" >
+        #{dzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zxzt != null" >
+        #{zxzt,jdbcType=VARCHAR},
+      </if>
+      <if test="czlx != null" >
+        #{czlx,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsj != null" >
+        #{jfsj,jdbcType=DATE},
+      </if>
+      <if test="signcode != null" >
+        #{signcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bjid != null" >
+        #{bjid,jdbcType=VARCHAR},
+      </if>
+      <if test="xjszd != null" >
+        #{xjszd,jdbcType=VARCHAR},
+      </if>
+      <if test="xsly != null" >
+        #{xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="csdbm != null" >
+        #{csdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="hkszd != null" >
+        #{hkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="jwbs != null" >
+        #{jwbs,jdbcType=VARCHAR},
+      </if>
+      <if test="gjxjh != null" >
+        #{gjxjh,jdbcType=VARCHAR},
+      </if>
+      <if test="jdfs != null" >
+        #{jdfs,jdbcType=VARCHAR},
+      </if>
+      <if test="xd != null" >
+        #{xd,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="suiban != null" >
+        #{suiban,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null" >
+        #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null" >
+        #{zp,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imooc.schoolproject.bo.StudentExample" resultType="java.lang.Integer" >
+    select count(*) from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student
+    <set >
+      <if test="record.xjh != null" >
+        XJH = #{record.xjh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxdm != null" >
+        XXDM = #{record.xxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.njid != null" >
+        NJID = #{record.njid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xh != null" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null" >
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmpy != null" >
+        XMPY = #{record.xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cym != null" >
+        CYM = #{record.cym,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xbm != null" >
+        XBM = #{record.xbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csrq != null" >
+        CSRQ = #{record.csrq,jdbcType=DATE},
+      </if>
+      <if test="record.mzm != null" >
+        MZM = #{record.mzm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gjdqm != null" >
+        GJDQM = #{record.gjdqm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjlxm != null" >
+        SFZJLXM = #{record.sfzjlxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sflx != null" >
+        SFLX = #{record.sflx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzjh != null" >
+        SFZJH = #{record.sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nj != null" >
+        NJ = #{record.nj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bh != null" >
+        BH = #{record.bh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdh != null" >
+        LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txdz != null" >
+        TXDZ = #{record.txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yzbm != null" >
+        YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dzxx != null" >
+        DZXX = #{record.dzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxzt != null" >
+        ZXZT = #{record.zxzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czlx != null" >
+        CZLX = #{record.czlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jfsj != null" >
+        JFSJ = #{record.jfsj,jdbcType=DATE},
+      </if>
+      <if test="record.signcode != null" >
+        SIGNCODE = #{record.signcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjid != null" >
+        BJID = #{record.bjid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xjszd != null" >
+        XJSZD = #{record.xjszd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xsly != null" >
+        XSLY = #{record.xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csdbm != null" >
+        CSDBM = #{record.csdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hkszd != null" >
+        HKSZD = #{record.hkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jwbs != null" >
+        JWBS = #{record.jwbs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gjxjh != null" >
+        GJXJH = #{record.gjxjh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jdfs != null" >
+        JDFS = #{record.jdfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xd != null" >
+        XD = #{record.xd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        PHOTO = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suiban != null" >
+        SUIBAN = #{record.suiban,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzmm != null" >
+        ZZMM = #{record.zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zp != null" >
+        ZP = #{record.zp,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update student
+    set XJH = #{record.xjh,jdbcType=VARCHAR},
+      XXDM = #{record.xxdm,jdbcType=VARCHAR},
+      NJID = #{record.njid,jdbcType=VARCHAR},
+      XH = #{record.xh,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      XMPY = #{record.xmpy,jdbcType=VARCHAR},
+      CYM = #{record.cym,jdbcType=VARCHAR},
+      XBM = #{record.xbm,jdbcType=VARCHAR},
+      CSRQ = #{record.csrq,jdbcType=DATE},
+      MZM = #{record.mzm,jdbcType=VARCHAR},
+      GJDQM = #{record.gjdqm,jdbcType=VARCHAR},
+      SFZJLXM = #{record.sfzjlxm,jdbcType=VARCHAR},
+      SFLX = #{record.sflx,jdbcType=VARCHAR},
+      SFZJH = #{record.sfzjh,jdbcType=VARCHAR},
+      NJ = #{record.nj,jdbcType=VARCHAR},
+      BH = #{record.bh,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      TXDZ = #{record.txdz,jdbcType=VARCHAR},
+      YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      DZXX = #{record.dzxx,jdbcType=VARCHAR},
+      ZXZT = #{record.zxzt,jdbcType=VARCHAR},
+      CZLX = #{record.czlx,jdbcType=VARCHAR},
+      JFSJ = #{record.jfsj,jdbcType=DATE},
+      SIGNCODE = #{record.signcode,jdbcType=VARCHAR},
+      BJID = #{record.bjid,jdbcType=VARCHAR},
+      XJSZD = #{record.xjszd,jdbcType=VARCHAR},
+      XSLY = #{record.xsly,jdbcType=VARCHAR},
+      CSDBM = #{record.csdbm,jdbcType=VARCHAR},
+      HKSZD = #{record.hkszd,jdbcType=VARCHAR},
+      JWBS = #{record.jwbs,jdbcType=VARCHAR},
+      GJXJH = #{record.gjxjh,jdbcType=VARCHAR},
+      JDFS = #{record.jdfs,jdbcType=VARCHAR},
+      XD = #{record.xd,jdbcType=VARCHAR},
+      PHOTO = #{record.photo,jdbcType=VARCHAR},
+      SUIBAN = #{record.suiban,jdbcType=VARCHAR},
+      ZZMM = #{record.zzmm,jdbcType=VARCHAR},
+      ZP = #{record.zp,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student
+    set XJH = #{record.xjh,jdbcType=VARCHAR},
+      XXDM = #{record.xxdm,jdbcType=VARCHAR},
+      NJID = #{record.njid,jdbcType=VARCHAR},
+      XH = #{record.xh,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      XMPY = #{record.xmpy,jdbcType=VARCHAR},
+      CYM = #{record.cym,jdbcType=VARCHAR},
+      XBM = #{record.xbm,jdbcType=VARCHAR},
+      CSRQ = #{record.csrq,jdbcType=DATE},
+      MZM = #{record.mzm,jdbcType=VARCHAR},
+      GJDQM = #{record.gjdqm,jdbcType=VARCHAR},
+      SFZJLXM = #{record.sfzjlxm,jdbcType=VARCHAR},
+      SFLX = #{record.sflx,jdbcType=VARCHAR},
+      SFZJH = #{record.sfzjh,jdbcType=VARCHAR},
+      NJ = #{record.nj,jdbcType=VARCHAR},
+      BH = #{record.bh,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      TXDZ = #{record.txdz,jdbcType=VARCHAR},
+      YZBM = #{record.yzbm,jdbcType=VARCHAR},
+      DZXX = #{record.dzxx,jdbcType=VARCHAR},
+      ZXZT = #{record.zxzt,jdbcType=VARCHAR},
+      CZLX = #{record.czlx,jdbcType=VARCHAR},
+      JFSJ = #{record.jfsj,jdbcType=DATE},
+      SIGNCODE = #{record.signcode,jdbcType=VARCHAR},
+      BJID = #{record.bjid,jdbcType=VARCHAR},
+      XJSZD = #{record.xjszd,jdbcType=VARCHAR},
+      XSLY = #{record.xsly,jdbcType=VARCHAR},
+      CSDBM = #{record.csdbm,jdbcType=VARCHAR},
+      HKSZD = #{record.hkszd,jdbcType=VARCHAR},
+      JWBS = #{record.jwbs,jdbcType=VARCHAR},
+      GJXJH = #{record.gjxjh,jdbcType=VARCHAR},
+      JDFS = #{record.jdfs,jdbcType=VARCHAR},
+      XD = #{record.xd,jdbcType=VARCHAR},
+      PHOTO = #{record.photo,jdbcType=VARCHAR},
+      SUIBAN = #{record.suiban,jdbcType=VARCHAR},
+      ZZMM = #{record.zzmm,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imooc.schoolproject.bo.Student" >
+    update student
+    <set >
+      <if test="xxdm != null" >
+        XXDM = #{xxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="njid != null" >
+        NJID = #{njid,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null" >
+        XH = #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmpy != null" >
+        XMPY = #{xmpy,jdbcType=VARCHAR},
+      </if>
+      <if test="cym != null" >
+        CYM = #{cym,jdbcType=VARCHAR},
+      </if>
+      <if test="xbm != null" >
+        XBM = #{xbm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null" >
+        CSRQ = #{csrq,jdbcType=DATE},
+      </if>
+      <if test="mzm != null" >
+        MZM = #{mzm,jdbcType=VARCHAR},
+      </if>
+      <if test="gjdqm != null" >
+        GJDQM = #{gjdqm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjlxm != null" >
+        SFZJLXM = #{sfzjlxm,jdbcType=VARCHAR},
+      </if>
+      <if test="sflx != null" >
+        SFLX = #{sflx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzjh != null" >
+        SFZJH = #{sfzjh,jdbcType=VARCHAR},
+      </if>
+      <if test="nj != null" >
+        NJ = #{nj,jdbcType=VARCHAR},
+      </if>
+      <if test="bh != null" >
+        BH = #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null" >
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null" >
+        TXDZ = #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null" >
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzxx != null" >
+        DZXX = #{dzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zxzt != null" >
+        ZXZT = #{zxzt,jdbcType=VARCHAR},
+      </if>
+      <if test="czlx != null" >
+        CZLX = #{czlx,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsj != null" >
+        JFSJ = #{jfsj,jdbcType=DATE},
+      </if>
+      <if test="signcode != null" >
+        SIGNCODE = #{signcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bjid != null" >
+        BJID = #{bjid,jdbcType=VARCHAR},
+      </if>
+      <if test="xjszd != null" >
+        XJSZD = #{xjszd,jdbcType=VARCHAR},
+      </if>
+      <if test="xsly != null" >
+        XSLY = #{xsly,jdbcType=VARCHAR},
+      </if>
+      <if test="csdbm != null" >
+        CSDBM = #{csdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="hkszd != null" >
+        HKSZD = #{hkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="jwbs != null" >
+        JWBS = #{jwbs,jdbcType=VARCHAR},
+      </if>
+      <if test="gjxjh != null" >
+        GJXJH = #{gjxjh,jdbcType=VARCHAR},
+      </if>
+      <if test="jdfs != null" >
+        JDFS = #{jdfs,jdbcType=VARCHAR},
+      </if>
+      <if test="xd != null" >
+        XD = #{xd,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="suiban != null" >
+        SUIBAN = #{suiban,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null" >
+        ZZMM = #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="zp != null" >
+        ZP = #{zp,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where XJH = #{xjh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.imooc.schoolproject.bo.Student" >
+    update student
+    set XXDM = #{xxdm,jdbcType=VARCHAR},
+      NJID = #{njid,jdbcType=VARCHAR},
+      XH = #{xh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XMPY = #{xmpy,jdbcType=VARCHAR},
+      CYM = #{cym,jdbcType=VARCHAR},
+      XBM = #{xbm,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=DATE},
+      MZM = #{mzm,jdbcType=VARCHAR},
+      GJDQM = #{gjdqm,jdbcType=VARCHAR},
+      SFZJLXM = #{sfzjlxm,jdbcType=VARCHAR},
+      SFLX = #{sflx,jdbcType=VARCHAR},
+      SFZJH = #{sfzjh,jdbcType=VARCHAR},
+      NJ = #{nj,jdbcType=VARCHAR},
+      BH = #{bh,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      TXDZ = #{txdz,jdbcType=VARCHAR},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      DZXX = #{dzxx,jdbcType=VARCHAR},
+      ZXZT = #{zxzt,jdbcType=VARCHAR},
+      CZLX = #{czlx,jdbcType=VARCHAR},
+      JFSJ = #{jfsj,jdbcType=DATE},
+      SIGNCODE = #{signcode,jdbcType=VARCHAR},
+      BJID = #{bjid,jdbcType=VARCHAR},
+      XJSZD = #{xjszd,jdbcType=VARCHAR},
+      XSLY = #{xsly,jdbcType=VARCHAR},
+      CSDBM = #{csdbm,jdbcType=VARCHAR},
+      HKSZD = #{hkszd,jdbcType=VARCHAR},
+      JWBS = #{jwbs,jdbcType=VARCHAR},
+      GJXJH = #{gjxjh,jdbcType=VARCHAR},
+      JDFS = #{jdfs,jdbcType=VARCHAR},
+      XD = #{xd,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      SUIBAN = #{suiban,jdbcType=VARCHAR},
+      ZZMM = #{zzmm,jdbcType=VARCHAR},
+      ZP = #{zp,jdbcType=LONGVARBINARY}
+    where XJH = #{xjh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imooc.schoolproject.bo.Student" >
+    update student
+    set XXDM = #{xxdm,jdbcType=VARCHAR},
+      NJID = #{njid,jdbcType=VARCHAR},
+      XH = #{xh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XMPY = #{xmpy,jdbcType=VARCHAR},
+      CYM = #{cym,jdbcType=VARCHAR},
+      XBM = #{xbm,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=DATE},
+      MZM = #{mzm,jdbcType=VARCHAR},
+      GJDQM = #{gjdqm,jdbcType=VARCHAR},
+      SFZJLXM = #{sfzjlxm,jdbcType=VARCHAR},
+      SFLX = #{sflx,jdbcType=VARCHAR},
+      SFZJH = #{sfzjh,jdbcType=VARCHAR},
+      NJ = #{nj,jdbcType=VARCHAR},
+      BH = #{bh,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      TXDZ = #{txdz,jdbcType=VARCHAR},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      DZXX = #{dzxx,jdbcType=VARCHAR},
+      ZXZT = #{zxzt,jdbcType=VARCHAR},
+      CZLX = #{czlx,jdbcType=VARCHAR},
+      JFSJ = #{jfsj,jdbcType=DATE},
+      SIGNCODE = #{signcode,jdbcType=VARCHAR},
+      BJID = #{bjid,jdbcType=VARCHAR},
+      XJSZD = #{xjszd,jdbcType=VARCHAR},
+      XSLY = #{xsly,jdbcType=VARCHAR},
+      CSDBM = #{csdbm,jdbcType=VARCHAR},
+      HKSZD = #{hkszd,jdbcType=VARCHAR},
+      JWBS = #{jwbs,jdbcType=VARCHAR},
+      GJXJH = #{gjxjh,jdbcType=VARCHAR},
+      JDFS = #{jdfs,jdbcType=VARCHAR},
+      XD = #{xd,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      SUIBAN = #{suiban,jdbcType=VARCHAR},
+      ZZMM = #{zzmm,jdbcType=VARCHAR}
+    where XJH = #{xjh,jdbcType=VARCHAR}
+  </update>
+</mapper>
